@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.jpg') }}" type="image/jpg">
+    <title>About Us</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            font-size: larger;
+            background: linear-gradient(45deg, purple, pink, blue, violet);
+            background-size: 300% 300%;
+            animation: gradient 5s ease infinite;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        h1 {
+            font-size: 50px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 20px;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        a {
+            color: #ff66cc;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: #ff3385;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 40px;
+            }
+
+            p {
+                font-size: 18px;
+                padding: 0 15px;
+            }
+
+            a {
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 35px;
+            }
+
+            p {
+                font-size: 16px;
+            }
+
+            a {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>About Us</h1>
+    <p>Welcome to Expressify! Our mission is to connect emotions with music, offering you the perfect song for every mood.
+        We aim to enhance your music experience by blending technology and emotions.</p>
+    <a href="/">Back to Home</a>
+</body>
+</html>

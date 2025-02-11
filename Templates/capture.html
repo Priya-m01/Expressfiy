@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="{{ url_for('static', filename='favicon.jpg') }}" type="image/jpg" />
+    <title>Expressify</title>
+    <script src="static/scripts.js" defer></script>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: "Arial", sans-serif;
+            font-size: larger;
+            background: linear-gradient(45deg, purple, pink, blue);
+            background-size: 300% 300%;
+            animation: gradient 10s ease infinite;
+            color: white;
+            text-align: center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        
+        nav {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-left img {
+            height: 50px;
+            width: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            margin-right: 50px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ff66cc;
+        }
+
+        .hamburger-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger-menu .bar {
+            width: 25px;
+            height: 4px;
+            margin: 5px;
+            background-color: white;
+            border-radius: 5px;
+        }
+
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+      
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            width: 80%;
+            max-width: 1000px;
+            padding: 40px;
+            background: rgba(178, 122, 166, 0.5);
+            border-radius: 15px;
+        }
+
+        h2 {
+            font-size: 36px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        .options-container {
+            display: flex;
+            /* Align items in a row */
+            justify-content: space-around;
+            width: 100%;
+            gap: 30px;
+        }
+
+        .input-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            width: 30%;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .input-section:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        video {
+            border: 2px solid #fff;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 320px;
+            height: auto;
+        }
+
+        button,
+        input {
+            padding: 12px 25px;
+            border: none;
+            background-color: #fcc2e9;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 20px;
+            gap: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        
+        input:focus {
+            background-color: lightcyan;
+            outline: none;
+        }
+
+        #text-input {
+            width: 80%;
+            font-size: 18px;
+            border: 2px solid white;
+            border-radius: 5px;
+            padding: 10px;
+            transition: border-color 0.3s ease;
+        }
+
+        #text-input:focus {
+            border-color: #ff66cc;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            color: #ff66cc;
+        }
+
+        ul li {
+            font-size: 18px;
+            padding: 5px 0;
+        }
+
+        #capture-button,
+        #speech-button,
+        #text-submit-button {
+            font-size: 18px;
+            padding: 15px 30px;
+            background-color: rgb(239, 95, 116);
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        #capture-button:hover,
+        #speech-button:hover,
+        #text-submit-button:hover {
+            background-color: lightpink;
+        }
+
+        .emoji {
+            font-size: 80px;
+            animation: fadeIn 3s 1s ease forwards;
+        }
+       
+     
+        @media (max-width: 768px) {
+            .input-section {
+                width: 45%;
+            }
+
+            h2 {
+                font-size: 28px;
+            }
+
+            h3 {
+                font-size: 18px;
+            }
+
+            button,
+            input {
+                font-size: 16px;
+                padding: 10px 20px;
+            }
+
+            .emoji {
+                font-size: 60px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .input-section {
+                width: 80%;
+            }
+
+            h2 {
+                font-size: 22px;
+            }
+
+            h3 {
+                font-size: 16px;
+            }
+
+            .options-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+
+            .emoji {
+                font-size: 50px;
+            }
+
+           
+        }
+
+        .footer-container {
+          position: absolute;
+          bottom: 10px;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: -700px; 
+        }
+
+        .footer-container .btn {
+            background: purple;
+            color: white;
+            font-weight: bold;
+            margin: 5px;
+            /* gap: -99px; */
+            bottom: 05px; 
+        }
+            
+        .footer-container .footer {
+            /* bottom:5px; */
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="nav-left">
+                <img src="{{ url_for('static', filename='favicon.jpg') }}" alt="Expressify Logo">
+        </div>
+        <div class="nav-links">
+            <a href="/welcome">Home</a>
+            <a href="/about">About</a>
+            <a href="/logout">Logout</a>
+        </div>
+        <div class="hamburger-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h2>Select an Option to Express Your Mood</h2>
+        <h3>Detected Emotion: <span id="emotion"></span></h3>
+
+        <div class="options-container">
+            <!-- Video Stream for Face Capture -->
+            <div class="input-section" id="camera-input">
+                <canvas id="canvas" style="display: none;"></canvas>
+                <h4>Capture Mood?</h4>
+                <video id="video" autoplay></video>
+                <button id="capture-button">Capture</button>
+            </div>
+
+            <!-- Speech Input -->
+            <div class="input-section" id="speech-input">
+                <h4>Say Emotions?</h4>
+                <div class="emoji">💭</div>
+                <!-- <button id="speech-button">Record</button> -->
+                <button id="record-button" disabled>Start Speaking</button>
+                <button id="speech-button">Record</button>
+            </div>
+
+            <!-- Text Input -->
+            <div class="input-section" id="text-input-container">
+                <h4>Text Feelings?</h4>
+                <div class="emoji">✍️</div>
+                <input type="text" id="text-input" placeholder="Type your mood here" />
+                <button id="text-submit-button">Submit</button>
+            </div>
+        </div>
+    </div>
+    <div class="footer-container">
+        <a href="/welcome"><button class="btn">Back</button></a>
+        <div class="footer">© 2024 Expressify - All Rights Reserved.</div>
+    </div>
+</body>
+
+</html>

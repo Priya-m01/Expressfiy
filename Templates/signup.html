@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.jpg') }}" type="image/jpg">
+    <title>Sign Up - Expressify</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            font-size: larger;
+            background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fbc2eb, #a18cd1);
+            background-size: 100% 100%;
+            animation: gradient 8s ease infinite;
+            color: white;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        h4 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        form {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            max-width: 300px;
+            display: inline-block;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        input {
+            display: block;
+            width: calc(100% - 40px);
+            max-width: 300px;
+            padding: 10px;
+            margin: 10px auto;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background: purple;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+
+        button:hover {
+            background: pink;
+            color: purple;
+            transform: scale(1.1);
+        }
+
+        a {
+            color: purple;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        p {
+           
+            margin-top: 20px;
+            font-size: 1rem;
+        }
+
+        .footer {
+            margin-top: 390px;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1000px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            h4 {
+                font-size: 1.5rem;
+            }
+
+            input, button {
+                width: 90%;
+                max-width: none;
+            }
+
+            button {
+                font-size: 0.9rem;
+            }
+
+            a, p {
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            h4 {
+                font-size: 0.9rem;
+            }
+
+            input {
+                font-size: 0.9rem;
+                padding: 8px;
+            }
+
+            button {
+                font-size: 0.8rem;
+                padding: 8px 15px;
+            }
+
+            a, p {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Sign Up</h1>
+    <h4>Create Your Account</h4>
+
+    <form method="POST" action="/signup">
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <button type="submit">Sign Up</button>
+    </form>
+      <!-- Display Flash Messages -->
+      {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul>
+          {% for category, message in messages %}
+            <li class="{{ category }}">{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    <p>Already have an account? <a href="/login">Login</a></p>
+    <div class="footer">
+        © 2024 Expressify - All Rights Reserved.
+    </div>
+</body>
+
+<script>
+    document.getElementById("signupForm").addEventListener("submit", function(event){
+        event.preventDefault(); // Prevent form submission
+        
+        let email = document.getElementById("email").value;
+        
+        if (!email) {
+            alert("Email is required.");
+            return;
+            
+        }
+
+    });
+</script>
+</html>

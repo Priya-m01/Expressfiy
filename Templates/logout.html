@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logout - Feedback</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #89f7fe, #66a6ff, #c3cfe2, #667eea);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Centered Container */
+        .container {
+            background: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            padding: 20px 30px;
+            text-align: center;
+            width: 400px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Stars Styling */
+        .stars {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .stars input {
+            display: none;
+        }
+
+        .stars label {
+            font-size: 2.5rem;
+            color: gray;
+            cursor: pointer;
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+
+        /* Highlight selected stars */
+        .stars input:checked ~ label {
+            color: gray; /* Reset non-selected stars */
+        }
+
+        .stars input:checked + label,
+        .stars input:checked + label ~ label {
+            color: gold; /* Highlight selected and previous stars */
+        }
+
+        /* Hover effect */
+        .stars label:hover,
+        .stars label:hover ~ label {
+            color: gold;
+        }
+
+        /* Form Styling */
+        textarea,
+        input[type="email"],
+        button {
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+        }
+
+        textarea {
+            resize: none;
+            height: 80px;
+        }
+
+        button {
+            background: #4facfe;
+            border: none;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: #00c6ff;
+        }
+
+        /* Heading */
+        h1 {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>We value your feedback!</h1>
+        <form action="/logout" method="POST">
+            <label>Rate your experience:</label>
+            <div class="stars">
+                <input type="radio" id="star1" name="rating" value="5"><label for="star5">⭐</label>
+                <input type="radio" id="star2" name="rating" value="4"><label for="star4">⭐</label>
+                <input type="radio" id="star3" name="rating" value="3"><label for="star3">⭐</label>
+                <input type="radio" id="star4" name="rating" value="2"><label for="star2">⭐</label>
+                <input type="radio" id="star5" name="rating" value="1"><label for="star1">⭐</label>
+            </div>
+            <label for="email">Your Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            <label for="comment">Your Comments:</label>
+            <textarea id="comment" name="comment" placeholder="Write your feedback here..." required></textarea>
+           <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

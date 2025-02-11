@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.jpg') }}" type="image/jpg">
+    <title>Expressify</title>
+    <style>
+
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            font-size: larger;
+            background: linear-gradient(-45deg, #9667b8, #ec3a93);
+            color: white;
+            background-size: cover; 
+            background-position: center;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            text-align: center;
+        }
+
+        .song-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 50px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-grow: 0.5;
+        }
+
+        .song-item {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .song-item img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .song-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin: 10px 0 5px;
+        }
+
+        .artist-name {
+            font-size: 14px;
+            color: #eee;
+            margin-bottom: 10px;
+        }
+
+        .play-button {
+            text-decoration: none;
+            color: white;
+            background: purple;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s;
+            font-size: 15px;
+        }
+
+        .play-button:hover {
+            background: lightpink;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background: purple;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 20px;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background: lightpink;
+            transform: scale(1.1);
+        }
+
+        h1 {
+            margin-top:20px;
+        }
+
+        p {
+            margin: 20px 0;
+        }
+        .footer {
+            position: relative;
+            bottom: 25px;
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        /* Responsive Design */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    .song-item {
+        padding: 10px;
+    }
+
+    button {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+
+    .song-title {
+        font-size: 16px;
+    }
+
+    .artist-name {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    .song-list {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 10px;
+    }
+
+    button {
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+
+    .song-title {
+        font-size: 14px;
+    }
+
+    .artist-name {
+        font-size: 10px;
+    }
+
+    .footer {
+        font-size: 12px;
+    }
+}
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome, {{ username }}!</h1>
+        <a href="/capture"><button>Decode your Soul !</button></a>
+        <p>Check out these songs if you're in the mood to listen:</p>
+        <div class="song-list">
+            {% for song in recommendations %}
+            <div class="song-item">
+                <p class="song-title">{{ song.trackName }}</p>
+                <p class="artist-name">by {{ song.artistName }}</p>
+                <a href="{{ song.url }}" target="_blank" class="play-button">▶ Play</a>
+            </div>
+            {% endfor %}
+        </div>
+        <a href="/logout"><button>Logout</button></a>
+    </div>
+    <div class="footer">
+        © 2024 Expressify - All Rights Reserved.
+    </div>
+</body>
+</html>
